@@ -28,7 +28,7 @@ composer create-project laravel/laravel=8.1.0 my_test_laravel
 エラーメッセージ
 #1130 - Host 'XX.XX.X.XXX' is not allowed to connect to this MySQL server
 ```
-（参考サイトhttps://codeaid.jp/blog/docker-mysql-php/）
+（参考サイト https://codeaid.jp/blog/docker-mysql-php/ ）
 
 dbコンテナに入る
 ```
