@@ -28,7 +28,8 @@ composer create-project laravel/laravel=8.1.0 my_test_laravel
 エラーメッセージ
 #1130 - Host 'XX.XX.X.XXX' is not allowed to connect to this MySQL server
 ```
-参考サイトhttps://codeaid.jp/blog/docker-mysql-php/
+（参考サイトhttps://codeaid.jp/blog/ docker-mysql-php/
+
 dbコンテナに入る
 ```
 docker-compose -f .my_test_laravel/docker-compose.yml exec db /bin/bash
@@ -65,5 +66,5 @@ php artisan migrate
 ```
 platform: linux/x86_64
 ```
-をdocker-compose.ymlに追記するだけで起動している人が多かったが自分の場合phpmyadminとMySQLとの接続でエラーが起きました。知識が浅く、かなり苦戦。
+をdocker-compose.ymlに追記するだけで起動している人が多かった。しかし自分の場合phpmyadminとMySQLとの接続でエラーが起きた。知識が浅く、かなり苦戦。
 同じエラーで困っている人の参考になれば幸いです。
