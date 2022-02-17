@@ -46,3 +46,31 @@
 2022-02-17T06:09:09.605565Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
 2022-02-17T06:09:09.877490Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
 2022-02-17T06:09:09.878824Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.28'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+2022-02-17T07:38:19.099931Z 0 [System] [MY-013172] [Server] Received SHUTDOWN from user <via user signal>. Shutting down mysqld (Version: 8.0.28).
+2022-02-17T07:38:19.479890Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.28)  MySQL Community Server - GPL.
+2022-02-17T07:38:25.161954Z 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2022-02-17T07:38:25.162369Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.28) starting as process 1
+2022-02-17T07:38:25.189828Z 0 [Warning] [MY-010159] [Server] Setting lower_case_table_names=2 because file system for /var/lib/mysql/ is case insensitive
+2022-02-17T07:38:25.326047Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2022-02-17T07:38:25.489879Z 1 [ERROR] [MY-012585] [InnoDB] Linux Native AIO interface is not supported on this platform. Please check your OS documentation and install appropriate binary of InnoDB.
+2022-02-17T07:38:25.491107Z 1 [Warning] [MY-012654] [InnoDB] Linux Native AIO disabled.
+2022-02-17T07:38:26.819391Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2022-02-17T07:38:27.941602Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2022-02-17T07:38:27.943396Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2022-02-17T07:38:27.961430Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2022-02-17T07:38:28.258514Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2022-02-17T07:38:28.263019Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.28'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+2022-02-17T07:41:22.072317Z 0 [System] [MY-013172] [Server] Received SHUTDOWN from user <via user signal>. Shutting down mysqld (Version: 8.0.28).
+2022-02-17T07:41:23.253444Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.28)  MySQL Community Server - GPL.
+2022-02-17T07:41:28.844415Z 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2022-02-17T07:41:28.844793Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.28) starting as process 1
+2022-02-17T07:41:28.879442Z 0 [Warning] [MY-010159] [Server] Setting lower_case_table_names=2 because file system for /var/lib/mysql/ is case insensitive
+2022-02-17T07:41:29.000171Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2022-02-17T07:41:29.166253Z 1 [ERROR] [MY-012585] [InnoDB] Linux Native AIO interface is not supported on this platform. Please check your OS documentation and install appropriate binary of InnoDB.
+2022-02-17T07:41:29.167248Z 1 [Warning] [MY-012654] [InnoDB] Linux Native AIO disabled.
+2022-02-17T07:41:30.572595Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2022-02-17T07:41:31.933784Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2022-02-17T07:41:31.935710Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2022-02-17T07:41:31.949386Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2022-02-17T07:41:32.222163Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2022-02-17T07:41:32.228340Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.28'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
