@@ -1,61 +1,69 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## M1環境下でDocker+Laravel+MySQL+phpmyadminを起動させる
+M1環境でDocker+MySQLを動かすためには少々工夫が必要だったので備忘録。
+アプリ名はmy_test_laravelにしているのでプロジェクトごとに変更してください。
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Dockerを起動させる
+.docker_my_test_laravelをローカルにクローンする。
+```
+cd my_test_laravel
+```
+Dockerを起動させる
+```
+docker-compose -f .my_test_laravel/docker-compose.yml up -d
+```
 
-## About Laravel
+## laravelプロジェクトを作成する
+コンテナに入る
+```
+docker-compose -f .my_test_laravel/docker-compose.yml exec php /bin/bash
+```
+composerでlaravelをインストールする
+```
+composer create-project laravel/laravel=8.1.0 my_test_laravel
+```
+インストール終了後、http://127.0.0.1:8085 と http://127.0.0.1:8086 が正しく表示されるか確認する。
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### phpmyadminにログインできないとき
+```
+エラーメッセージ
+#1130 - Host 'XX.XX.X.XXX' is not allowed to connect to this MySQL server
+```
+参考サイトhttps://codeaid.jp/blog/docker-mysql-php/
+dbコンテナに入る
+```
+docker-compose -f .my_test_laravel/docker-compose.yml exec db /bin/bash
+```
+mysqlに入る
+```
+mysql -u root -p
+パスワードを求められるのでpasswordと入力
+```
+ユーザーを作る
+```
+GRANT ALL ON user_db.* to 'root'@'%' IDENTIFIED BY 'password'；
+FLUSH PRIVILEGES;
+```
+自分の場合はこれで解決しました。
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## SQLとの接続を確認する
+phpmyadminにて下記SQLを実行
+```
+CREATE DATABASE my_test_laravel DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## ユーザーテーブルを作成
+.envを編集します
+.env.exampleを参考にして編集します
+phpコンテナ内でマイグレーションを実行する
+```
+php artisan migrate
+```
+エラーが出なければ成功です。
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## M1環境下でのDocker+MySQLはバージョンによって対応が異なるらしい
+調べた中では
+```
+platform: linux/x86_64
+```
+をdocker-compose.ymlに追記するだけで起動している人が多かったが自分の場合phpmyadminとMySQLとの接続でエラーが起きました。知識が浅く、かなり苦戦。
+同じエラーで困っている人の参考になれば幸いです。
